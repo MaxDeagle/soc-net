@@ -1,0 +1,13 @@
+.form-container {
+  margin: auto;
+  width: 700px;
+}
+
+.login-form {
+  display: flex;
+  flex-flow: column;
+  padding: 40px;
+  border: 5px solid #e2e0e0;
+  border-radius: 5px;
+  margin-top: 10px;
+}
