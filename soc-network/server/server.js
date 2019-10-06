@@ -22,6 +22,6 @@ client.connect((err, database) => {
   const db = database.db("socialNetworkDB");
   require('./app/routes')(app, db);
   app.listen(port, () => {
-    console.log('We are live on ' + port);
+    console.log(port);
   });
 });

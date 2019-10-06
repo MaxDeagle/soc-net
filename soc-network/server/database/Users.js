@@ -24,7 +24,7 @@ module.exports = function (app, db) {
   });
 
   app.post('/users', (req, res) => {
-    const user = { secondName: req.body.secondName, firstName: req.body.firstName, birth: req.body.birth, img: req.body.img };
+    const user = { secondName: req.body.secondName, firstName: req.body.firstName, birth: req.body.birth, age: req.body.age };
     db.collection('users').insert(user, (err, result) => {
       if (err) { 
         res.send({ 'error': 'An error has occurred' }); 
@@ -49,7 +49,7 @@ module.exports = function (app, db) {
   app.put('/users/:id', (req, res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
-    const user = { secondName: req.body.secondName, firstName: req.body.firstName, birth: req.body.birth };
+    const user = { secondName: req.body.secondName, firstName: req.body.firstName, birth: req.body.birth, age: req.body.age };
     db.collection('users').update(details, user, (err, result) => {
       if (err) {
         res.send({ 'error': 'An error has occurred' });
@@ -58,29 +58,4 @@ module.exports = function (app, db) {
       }
     });
   });
-
-  app.put('/users/:id/update-status', (req, res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    db.collection('users').update(details, { $set: { status: req.body.status }}, (err, result) => {
-      if (err) {
-        res.send({ 'error': 'An error has occurred' });
-      } else {
-        res.send();
-      }
-    });
-  });
-
-  app.put('/users/:id/add-friend', (req, res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    db.collection('users').update(details, { $push: { friends: req.body.friends }}, (err, result) => {
-      if (err) {
-        res.send({ 'error': 'An error has occurred' });
-      } else {
-        res.send();
-      }
-    });
-  });
-  
 };
