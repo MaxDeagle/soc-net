@@ -11,9 +11,9 @@ module.exports = function (app, db) {
     });
   });
 
-  app.get('/users/:id', (req, res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) }
+  app.get('/users/:email', (req, res) => {
+    const email = req.params.email;
+    const details = { email };
     db.collection('users').findOne(details, (err, item) => {
       if (err) {
         res.send({ 'error': 'An error has occurred' });
@@ -24,7 +24,7 @@ module.exports = function (app, db) {
   });
 
   app.post('/users', (req, res) => {
-    const user = { secondName: req.body.secondName, firstName: req.body.firstName, birth: req.body.birth, img: req.body.img };
+    const user = { secondName: req.body.secondName, firstName: req.body.firstName, birth: req.body.birth, img: req.body.img, email: req.body.email };
     db.collection('users').insert(user, (err, result) => {
       if (err) { 
         res.send({ 'error': 'An error has occurred' }); 
@@ -49,7 +49,7 @@ module.exports = function (app, db) {
   app.put('/users/:id', (req, res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
-    const user = { secondName: req.body.secondName, firstName: req.body.firstName, birth: req.body.birth };
+    const user = { secondName: req.body.secondName, firstName: req.body.firstName, birth: req.body.birth, img: req.body.img, email: req.body.email };
     db.collection('users').update(details, user, (err, result) => {
       if (err) {
         res.send({ 'error': 'An error has occurred' });
