@@ -1,0 +1,37 @@
+<div class="header">
+  <div class="header__avatar-container">
+    <div class="header__avatar" [style.backgroundImage]="avatarStyle">
+    </div>
+    <button class="header__avatar-button" color="primary" mat-stroked-button>Редактировать</button>
+  </div>
+  <div class="header__info">
+    <div class="header__title">
+      <div class="header__name">
+        {{ user.first_name }} {{ user.last_name }}
+      </div>
+      <div class="header__status">
+        {{ user.status }}
+      </div>
+    </div>
+
+    <div class="header__details">
+      <div class="info-row">
+        <div class="info-row__label">
+          Город:
+        </div>
+        <div class="info-row__value">
+          {{ user.city }}
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-row__label">
+          Дата рождения:
+        </div>
+        <div class="info-row__value">
+          {{ user.birth | date:'shortDate'}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

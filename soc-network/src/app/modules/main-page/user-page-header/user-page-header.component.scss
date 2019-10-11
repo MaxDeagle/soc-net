@@ -1,0 +1,63 @@
+.header {
+
+  padding-bottom: 40px;
+  border-bottom: 1px solid #d4d4d4;
+  display: flex;
+
+  &__avatar {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__avatar-container {
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  &__info {
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-flow: column;
+    margin-left: 50px;
+  }
+
+  &__name {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  &__avatar-button {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  &__title {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dedede;
+  }
+
+  &__details {
+    display: flex;
+    flex-flow: column;
+  }
+}
+
+.info-row {
+  padding-top: 12px;
+}
+
+.info-row__label {
+  width: 160px;
+  display: inline-block;
+}
+
+.info-row__value {
+  display: inline-block;
+}
