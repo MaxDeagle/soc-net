@@ -15,11 +15,12 @@ module.exports = function (app, db) {
     const email = req.params.email;
     const details = { email };
     db.collection('users').findOne(details, (err, item) => {
-      if (err) {
-        res.send({ 'error': 'An error has occurred' });
-      } else {
-        res.send(item);
+      if (item === null) {
+        res.status(404).send('Not found');
+        return;
       }
+
+      res.send(item);
     });
   });
 
@@ -75,6 +76,18 @@ module.exports = function (app, db) {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
     db.collection('users').update(details, { $push: { friends: req.body.friends }}, (err, result) => {
+      if (err) {
+        res.send({ 'error': 'An error has occurred' });
+      } else {
+        res.send();
+      }
+    });
+  });
+
+  app.post('/users/:email/upload-avatar', (req, res) => {
+    const email = req.params.email;
+    console.log(req.files.file.data);
+    db.collection('users').update({ email }, { $set: { img: req.files.file.data }}, (err, result) => {
       if (err) {
         res.send({ 'error': 'An error has occurred' });
       } else {

@@ -2,12 +2,12 @@
   <div class="header__avatar-container">
     <div class="header__avatar" [style.backgroundImage]="avatarStyle">
     </div>
-    <button class="header__avatar-button" color="primary" mat-stroked-button>Редактировать</button>
+    <button class="header__avatar-button" (click)="loadAvatar()" color="primary" mat-stroked-button>Редактировать</button>
   </div>
   <div class="header__info">
     <div class="header__title">
       <div class="header__name">
-        {{ user.first_name }} {{ user.last_name }}
+        {{ user.firstName }} {{ user.secondName }}
       </div>
       <div class="header__status">
         {{ user.status }}
@@ -35,3 +35,4 @@
     </div>
   </div>
 </div>
+<input #fileInput type="file" [ngStyle]=" { 'display':'none' }" name="avatar" (change)="onFileChange($event)" />
