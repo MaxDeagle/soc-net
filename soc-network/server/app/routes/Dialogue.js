@@ -24,38 +24,26 @@ module.exports = function (app, db) {
   });
 
   app.post('/dialogue', (req, res) => {
-    const dialogue = { name: req.body.name, age: req.body.age };
-    db.collection('dialogue').insert(dialogue, (err, result) => {
+    const users = req.body.users;
+
+    const dialogue = { users: { $all: users } };
+    db.collection('dialogue').findOne(dialogue, (err, result) => {
+      if (result === null) { 
+        createDialog(users, res)
+      } else {
+        res.send(result);
+      }
+    });
+  });
+
+  createDialog = (users, res) => {
+    const dialog = { messages: [], users };
+    db.collection('dialogue').insert(dialog, (err, result) => {
       if (err) { 
         res.send({ 'error': 'An error has occurred' }); 
       } else {
         res.send(result.ops[0]);
       }
     });
-  });
-
-  app.delete('/dialogue/:id', (req, res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    db.collection('dialogue').remove(details, (err, item) => {
-      if (err) {
-        res.send({ 'error': 'An error has occurred' });
-      } else {
-        res.send('Note ' + id + ' deleted!');
-      }
-    });
-  });
-
-  app.put('/dialogue/:id', (req, res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    const dialogue = { text: req.body.body, title: req.body.title, name: req.body.name };
-    db.collection('dialogue').update(details, dialogue, (err, result) => {
-      if (err) {
-        res.send({ 'error': 'An error has occurred' });
-      } else {
-        res.send(dialogue);
-      }
-    });
-  });
+  }
 };

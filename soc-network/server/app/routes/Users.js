@@ -86,7 +86,6 @@ module.exports = function (app, db) {
 
   app.post('/users/:email/upload-avatar', (req, res) => {
     const email = req.params.email;
-    console.log(req.files.file.data);
     db.collection('users').update({ email }, { $set: { img: req.files.file.data }}, (err, result) => {
       if (err) {
         res.send({ 'error': 'An error has occurred' });
