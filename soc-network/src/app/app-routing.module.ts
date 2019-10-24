@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: './modules/auth/auth.module#AuthModule',
+  },
+  {
+    path: 'communication',
+    loadChildren: './modules/communication/communication.module#CommunicationModule',
   }
   ];
 
