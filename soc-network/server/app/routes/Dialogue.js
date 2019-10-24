@@ -46,4 +46,32 @@ module.exports = function (app, db) {
       }
     });
   }
+
+  app.put('/dialogue/:id/messages', (req, res) => {
+    const id = req.params.id;
+    const details = { '_id': new ObjectID(id) };
+    db.collection('dialogue').update(details, { $push: { messages: req.body.messages }}, (err, result) => {
+      if (err) {
+        res.send({ 'error': 'An error has occurred' });
+      } else {
+        res.send();
+      }
+    });
+  });
+
+  app.get('/dialogue/:id/messages', (req, res) => {
+    const id = req.params.id;
+    const details = { '_id': new ObjectID(id) }
+    db.collection('dialogue').findOne(details, (err, item) => {
+      if (err) {
+        res.send({ 'error': 'An error has occurred' });
+      } else {
+        res.send(item);
+      }
+    });
+  });
+
+  
+
+  
 };

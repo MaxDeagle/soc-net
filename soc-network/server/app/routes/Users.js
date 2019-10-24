@@ -95,4 +95,18 @@ module.exports = function (app, db) {
     });
   });
   
+  app.get('/users/:id/dialogue', (req, res) => {
+    const id = req.params.id;
+    
+    db.collection('dialogue').find({ users: Id }).toArray((err, items) => {
+      if (items === null) {
+        res.send( 'You don\'t have any dialogues' );
+        return;
+      } else {
+        res.send(items);
+      }
+    });
+  });
+ 
+
 };
