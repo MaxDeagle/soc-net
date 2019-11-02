@@ -1,0 +1,55 @@
+:host {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.last-msg-text {
+  width: 250px;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+}
+
+.dialog-list-item-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.dialog {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  max-width: 700px;
+  margin: auto;
+}
+
+.content {
+  flex-basis: 70%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+}
+
+.date {
+  flex-basis: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: gray;
+}
+
+.author {
+  font-size: 20px;
+}
+
+.msg {
+  color: gray;
+}

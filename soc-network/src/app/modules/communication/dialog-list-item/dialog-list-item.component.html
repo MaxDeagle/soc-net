@@ -1,9 +1,16 @@
+<div class="dialog">
+  <div class="dialog-list-item-image">
 
-<mat-card class="dialog-list-item">
-  <mat-card-header>
-    <div mat-card-avatar class="dialog-list-item-image"></div>
-    <mat-card-title>sd</mat-card-title>
-    <mat-card-subtitle>dsds</mat-card-subtitle>
-    
-  </mat-card-header>
-</mat-card>
+  </div>
+  <div class="content">
+    <div class="author">
+      Author
+    </div>
+    <div class="msg">
+      {{ dialog.messages[dialog.messages.length - 1]}}
+    </div>
+  </div>
+  <div class="date">
+      {{ dialog.lastMessageDate | date }}
+  </div>
+</div>

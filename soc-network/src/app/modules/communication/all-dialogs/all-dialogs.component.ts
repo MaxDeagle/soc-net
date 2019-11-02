@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/providers/user/user.service';
+import { CommunicationService } from '../../../providers/communication/communication.service';
 
 
 @Component({
@@ -9,15 +9,12 @@ import { UserService } from 'src/app/providers/user/user.service';
 })
 
 export class AllDialogsComponent implements OnInit {
-
-  
-
   dialogs;
 
-  constructor(private userService: UserService) { }
+  constructor(private communicationService: CommunicationService) { }
 
   ngOnInit() {
-    this.userService.getDialogs().subscribe((dialogs) => {
+    this.communicationService.getDialogs().subscribe((dialogs) => {
       console.log(dialogs);
       this.dialogs = dialogs;
     });

@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.loginForm.controls.email.value) {
       this.authService.login(this.loginForm.controls.email.value).subscribe((response) => {
-        console.log(response);
+        localStorage.setItem('id', response._id);
         localStorage.setItem('email', this.loginForm.controls.email.value);
         this.router.navigate(['/user']);
       });

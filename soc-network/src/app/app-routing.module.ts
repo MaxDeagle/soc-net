@@ -20,6 +20,7 @@ const routes: Routes = [
   {
     path: 'communication',
     loadChildren: './modules/communication/communication.module#CommunicationModule',
+    canActivate: [AuthGuard]
   }
   ];
 

@@ -22,9 +22,4 @@ export class UserService {
       observe: 'events'
     });
   }
-
-  getDialogs(): Observable<any> {
-    const id = localStorage.getItem('id');
-    return this.http.get(`http://localhost:8000/users/${id}/dialogue`);
-  }
 }
