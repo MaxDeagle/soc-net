@@ -1,0 +1,13 @@
+<div (click)="navigateToUserPage()" class="friend">
+  <div class="friend-avatar" [style.backgroundImage]="avatarStyle">
+
+  </div>
+  <div class="content">
+    <div class="name">
+      {{ friend.firstName }} {{ friend.secondName }}
+    </div>
+  </div>
+  <div class="buttons">
+    <button (click)="navigateToDialog($event)" color="primary" mat-raised-button>Написать</button>
+  </div>
+</div>

@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
-import { AllDialogsComponent } from './all-dialogs/all-dialogs.component';
-import { DialogPageComponent } from './dialog-page/dialog-page.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AllDialogsComponent
+    component: UserPageComponent,
+    children: []
   },
   {
-    path: ':userId',
-    component: DialogPageComponent
+    path: ':id',
+    component: UserPageComponent,
+    children: []
   }
 ];
 
@@ -20,4 +21,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [AuthGuard]
 })
-export class CommunicationRoutingModule { }
+export class UserPageRoutingModule { }

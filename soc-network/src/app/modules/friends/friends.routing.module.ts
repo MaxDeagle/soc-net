@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
-import { MainPageComponent } from './main-page/main-page.component';
+import { FriendsListComponent } from './friends-list/friends-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MainPageComponent,
+    component: FriendsListComponent,
     children: []
   }
 ];
@@ -16,4 +16,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [AuthGuard]
 })
-export class MainPageRoutingModule { }
+export class FriendsRoutingModule { }

@@ -2,7 +2,9 @@
   <div class="header__avatar-container">
     <div class="header__avatar" [style.backgroundImage]="avatarStyle">
     </div>
-    <button class="header__avatar-button" (click)="loadAvatar()" color="primary" mat-stroked-button>Редактировать</button>
+    <button *ngIf="isCurrentUser" class="header__avatar-button" (click)="loadAvatar()" color="primary" mat-raised-button>Редактировать</button>
+    <button *ngIf="!isCurrentUser" class="header__avatar-button" (click)="toggleFriend()" color="primary" mat-raised-button>{{ getFriendButtonText() }}</button>
+    <button *ngIf="!isCurrentUser" class="header__avatar-button" color="primary" mat-raised-button>Написать</button>
   </div>
   <div class="header__info">
     <div class="header__title">

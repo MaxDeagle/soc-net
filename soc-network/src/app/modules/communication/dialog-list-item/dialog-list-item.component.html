@@ -1,16 +1,16 @@
-<div class="dialog">
-  <div class="dialog-list-item-image">
+<div *ngIf="collocutor" class="dialog" (click)="navigateToDialog()">
+  <div class="dialog-list-item-image" [style.backgroundImage]="avatarStyle">
 
   </div>
   <div class="content">
     <div class="author">
-      Author
+      {{ collocutor.firstName }} {{ collocutor.secondName }}
     </div>
     <div class="msg">
-      {{ dialog.messages[dialog.messages.length - 1]}}
+      {{ dialog.messages[dialog.messages.length - 1].text }}
     </div>
   </div>
   <div class="date">
-      {{ dialog.lastMessageDate | date }}
+      {{ dialog.messages[dialog.messages.length - 1].datetime | date }}
   </div>
 </div>

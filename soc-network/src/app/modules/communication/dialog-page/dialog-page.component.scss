@@ -1,0 +1,67 @@
+.dialog {
+  justify-content: space-between;
+  padding: 10px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  max-width: 900px;
+  margin: auto;
+  height: 600px;
+  padding: 20px;
+}
+
+:host {
+  padding-top: 20px;
+  display: block;
+}
+
+.messages-container {
+  padding: 20px;
+  height: 500px;
+  overflow-y: scroll;
+  background-color: #dff9ff6b;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+}
+
+.send-container {
+  display: flex;
+  padding-top: 5px;
+  justify-content: space-between;
+}
+
+.textarea {
+  flex-basis: 80%;
+  resize: none;
+}
+
+.send-button {
+  flex-basis: 15%;
+}
+
+.current-user-message {
+  align-self: flex-end;
+
+  .message-time {
+    float: right;
+  }
+}
+
+.message-text {
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  background-color: #2e6d7b7a;
+  margin: 5px 0;
+}
+
+.message {
+  margin: 5px 0;
+}
+
+.message-time {
+  font-size: 10px;
+  color: gray;
+  float: left;
+}

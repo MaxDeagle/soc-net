@@ -1,0 +1,16 @@
+<div class="dialog">
+  <div #scrollMe class="messages-container">
+    <div *ngFor="let message of messages" class="message" [ngClass]="{ 'current-user-message': isCurrentUserMessage(message) }">
+      <div class="message-text">
+          {{ message.text }}
+      </div>
+      <div class="message-time">
+        {{ message.datetime | date:'H:mm d.M.yy' }}
+      </div>
+    </div>
+  </div>
+  <div class="send-container">
+    <textarea class="textarea" [(ngModel)]="newMessageText" rows="4"></textarea>
+    <button color="primary" class="send-button" mat-raised-button (click)="sendMessage()">Отправить</button>
+  </div>
+</div>

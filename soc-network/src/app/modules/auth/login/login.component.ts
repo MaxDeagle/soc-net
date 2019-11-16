@@ -24,13 +24,13 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.clear();
   }
 
   login() {
     if (this.loginForm.controls.email.value) {
       this.authService.login(this.loginForm.controls.email.value).subscribe((response) => {
-        localStorage.setItem('id', response._id);
-        localStorage.setItem('email', this.loginForm.controls.email.value);
+        localStorage.setItem('currentUserId', response._id);
         this.router.navigate(['/user']);
       });
     }

@@ -1,77 +1,128 @@
 var ObjectID = require('mongodb').ObjectID;
 module.exports = function (app, db) {
 
+  // Получение диалогов
   app.get('/dialogue', (req, res) => {
     db.collection('dialogue').aggregate().toArray(function (err, items) {
       if (err) {
-        res.send({ success: false });
+        res.send({
+          success: false
+        });
       } else {
-        res.send({ success: true, data: items });
+        res.send({
+          success: true,
+          data: items
+        });
       }
     });
   });
 
+  // Получение диалога по id
   app.get('/dialogue/:id', (req, res) => {
     const id = req.params.id;
-    const details = { '_id': new ObjectID(id) }
+    const details = {
+      '_id': new ObjectID(id)
+    }
     db.collection('dialogue').findOne(details, (err, item) => {
       if (err) {
-        res.send({ 'error': 'An error has occurred' });
+        res.send({
+          'error': 'An error has occurred'
+        });
       } else {
         res.send(item);
       }
     });
   });
 
+  // Получение диалога или создание и получение. Есть ли диалог между двумя юзерами
   app.post('/dialogue', (req, res) => {
-    const users = req.body.users;
-
-    const dialogue = { users: { $all: users } };
-    db.collection('dialogue').findOne(dialogue, (err, result) => {
-      if (result === null) { 
-        createDialog(users, res)
-      } else {
-        res.send(result);
+    let users = req.body.users; // Юзеры
+    users = users.map((user) => new ObjectID(user));
+    // сохраняем полных юзеров в диалог
+    db.collection('users').find({
+      _id: {
+        $in: users
       }
+    }).toArray((err, items) => {
+      const userIds = items.map((user) => new ObjectID(user._id));
+      const dialogue = {
+        'users._id': {
+          $all: userIds
+        }
+      };
+      db.collection('dialogue').findOne(dialogue, (err, result) => {
+        if (result === null) {
+          createDialog(items, res)
+        } else {
+          res.send(result);
+        }
+      });
     });
   });
 
+  // Создание и получение диалога
   createDialog = (users, res) => {
-    const dialog = { messages: [], users };
+    const dialog = {
+      messages: [],
+      users
+    };
     db.collection('dialogue').insert(dialog, (err, result) => {
-      if (err) { 
-        res.send({ 'error': 'An error has occurred' }); 
+      if (err) {
+        res.send({
+          'error': 'An error has occurred'
+        });
       } else {
         res.send(result.ops[0]);
       }
     });
   }
 
+  // Добавление сообщения в диалог
   app.put('/dialogue/:id/messages', (req, res) => {
-    const id = req.params.id;
-    const details = { '_id': new ObjectID(id) };
-    db.collection('dialogue').update(details, { $push: { messages: req.body.messages }}, (err, result) => {
-      if (err) {
-        res.send({ 'error': 'An error has occurred' });
-      } else {
-        res.send();
+    const dialogId = req.params.id;
+    const dialogDetails = {
+      '_id': new ObjectID(dialogId)
+    };
+    const userDetails = {
+      '_id': new ObjectID(req.body.userId)
+    };
+
+    db.collection('users').findOne(userDetails, (err, user) => {
+      const message = {
+        text : req.body.message,
+        author: user,
+        datetime: new Date()
       }
+      db.collection('dialogue').update(dialogDetails, {
+        $push: {
+          messages: message
+        }
+      }, (err, result) => {
+        if (err) {
+          res.send({
+            'error': 'An error has occurred'
+          });
+        } else {
+          res.send(message);
+        }
+      });
     });
   });
 
+  // Получение сообщений
   app.get('/dialogue/:id/messages', (req, res) => {
     const id = req.params.id;
-    const details = { '_id': new ObjectID(id) }
+    const details = {
+      '_id': new ObjectID(id)
+    }
     db.collection('dialogue').findOne(details, (err, item) => {
       if (err) {
-        res.send({ 'error': 'An error has occurred' });
+        res.send({
+          'error': 'An error has occurred'
+        });
       } else {
         res.send(item);
       }
     });
   });
-
-  
-
-  
 };

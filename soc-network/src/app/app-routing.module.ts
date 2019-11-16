@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: './modules/main-page/main-page.module#MainPageModule',
+    loadChildren: './modules/user-page/user-page.module#UserPageModule',
     canActivate: [AuthGuard]
   },
   {
@@ -20,6 +20,11 @@ const routes: Routes = [
   {
     path: 'communication',
     loadChildren: './modules/communication/communication.module#CommunicationModule',
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'friends',
+    loadChildren: './modules/friends/friends.module#FriendsModule',
     canActivate: [AuthGuard]
   }
   ];

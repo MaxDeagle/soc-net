@@ -9,13 +9,12 @@ import { CommunicationService } from '../../../providers/communication/communica
 })
 
 export class AllDialogsComponent implements OnInit {
-  dialogs;
+  dialogs = [];
 
   constructor(private communicationService: CommunicationService) { }
 
   ngOnInit() {
     this.communicationService.getDialogs().subscribe((dialogs) => {
-      console.log(dialogs);
       this.dialogs = dialogs;
     });
   }
