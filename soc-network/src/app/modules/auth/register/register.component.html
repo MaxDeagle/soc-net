@@ -1,0 +1,31 @@
+<div class="form-container">
+  <form class="register-form" [formGroup]="registerForm">
+    <mat-form-field>
+      <input formControlName="firstName" matInput placeholder="First Name">
+    </mat-form-field>
+    <mat-form-field>
+      <input formControlName="secondName" matInput placeholder="Second Name">
+    </mat-form-field>
+    <mat-form-field>
+      <input formControlName="email" matInput placeholder="Email">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="birth" [matDatepicker]="picker" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input formControlName="city" matInput placeholder="City">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input formControlName="password" type="password" matInput placeholder="Password">
+    </mat-form-field>
+
+    <button color="primary" mat-raised-button (click)="register()">Sigh Up</button>
+
+  </form>
+  <button color="primary" mat-raised-button (click)="navigateToLogin()">Sign In</button>
+</div>

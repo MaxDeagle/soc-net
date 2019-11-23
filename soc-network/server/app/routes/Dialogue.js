@@ -1,8 +1,10 @@
 var ObjectID = require('mongodb').ObjectID;
+const passport = require('passport');
+
 module.exports = function (app, db) {
 
   // Получение диалогов
-  app.get('/dialogue', (req, res) => {
+  app.get('/dialogue', passport.authenticationMiddleware(), (req, res) => {
     db.collection('dialogue').aggregate().toArray(function (err, items) {
       if (err) {
         res.send({
@@ -18,7 +20,7 @@ module.exports = function (app, db) {
   });
 
   // Получение диалога по id
-  app.get('/dialogue/:id', (req, res) => {
+  app.get('/dialogue/:id', passport.authenticationMiddleware(), (req, res) => {
     const id = req.params.id;
     const details = {
       '_id': new ObjectID(id)
@@ -35,7 +37,7 @@ module.exports = function (app, db) {
   });
 
   // Получение диалога или создание и получение. Есть ли диалог между двумя юзерами
-  app.post('/dialogue', (req, res) => {
+  app.post('/dialogue', passport.authenticationMiddleware(), (req, res) => {
     let users = req.body.users; // Юзеры
     users = users.map((user) => new ObjectID(user));
     // сохраняем полных юзеров в диалог
@@ -78,7 +80,7 @@ module.exports = function (app, db) {
   }
 
   // Добавление сообщения в диалог
-  app.put('/dialogue/:id/messages', (req, res) => {
+  app.put('/dialogue/:id/messages', passport.authenticationMiddleware(), (req, res) => {
     const dialogId = req.params.id;
     const dialogDetails = {
       '_id': new ObjectID(dialogId)
@@ -110,7 +112,7 @@ module.exports = function (app, db) {
   });
 
   // Получение сообщений
-  app.get('/dialogue/:id/messages', (req, res) => {
+  app.get('/dialogue/:id/messages', passport.authenticationMiddleware(), (req, res) => {
     const id = req.params.id;
     const details = {
       '_id': new ObjectID(id)

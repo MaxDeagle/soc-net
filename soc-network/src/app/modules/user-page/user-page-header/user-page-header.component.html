@@ -4,7 +4,7 @@
     </div>
     <button *ngIf="isCurrentUser" class="header__avatar-button" (click)="loadAvatar()" color="primary" mat-raised-button>Редактировать</button>
     <button *ngIf="!isCurrentUser" class="header__avatar-button" (click)="toggleFriend()" color="primary" mat-raised-button>{{ getFriendButtonText() }}</button>
-    <button *ngIf="!isCurrentUser" class="header__avatar-button" color="primary" mat-raised-button>Написать</button>
+    <button *ngIf="!isCurrentUser" class="header__avatar-button" (click)="navigateToDialog()" color="primary" mat-raised-button>Написать</button>
   </div>
   <div class="header__info">
     <div class="header__title">

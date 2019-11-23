@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UserService } from 'src/app/providers/user/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-page-header',
@@ -12,7 +12,7 @@ export class UserPageHeaderComponent implements OnInit {
 
   @ViewChild('fileInput') fileInputElem: ElementRef;
   @Input() user: any;
-  constructor(public sanitizer: DomSanitizer, private userService: UserService, private route: ActivatedRoute) {
+  constructor(public sanitizer: DomSanitizer, private userService: UserService, private route: ActivatedRoute, private router: Router) {
     if (this.route.snapshot.params.id) {
       this.isCurrentUser = false;
     }
@@ -65,6 +65,10 @@ export class UserPageHeaderComponent implements OnInit {
     this.userService.removeFriend(this.route.snapshot.params.id).subscribe(() => {
       this.isUserInFriends = false;
     });
+  }
+
+  navigateToDialog() {
+    this.router.navigate(['communication', this.user._id]);
   }
 
   onFileChange(event) {
