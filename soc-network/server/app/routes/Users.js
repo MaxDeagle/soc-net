@@ -152,6 +152,23 @@ module.exports = function (app, db) {
       }
     });
   });
+
+  // Добавление записей на страницу
+  app.post('/users/:id/add-page-record', passport.authenticationMiddleware(), (req, res) => {
+    const id = req.params.id;
+    const details = { '_id': new ObjectID(id) };
+    const newRecord = {
+      text: req.body.text,
+      date: new Date()
+    }
+    db.collection('users').update(details, { $push: { records: newRecord }}, (err, result) => {
+      if (err) {
+        res.send({ 'error': 'An error has occurred' });
+      } else {
+        res.send();
+      }
+    });
+  });
  
 
 };

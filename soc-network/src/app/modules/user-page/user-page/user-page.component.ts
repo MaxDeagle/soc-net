@@ -17,10 +17,12 @@ export class UserPageComponent implements OnInit {
     if (this.route.snapshot.params.id) {
       this.userService.getUser(this.route.snapshot.params.id).subscribe((user) => {
         this.user = user;
+        this.user.records = this.user.records ? this.user.records.slice().reverse() : [];
       });
     } else {
       this.userService.getUser().subscribe((user) => {
         this.user = user;
+        this.user.records = this.user.records ? this.user.records.slice().reverse() : [];
       });
     }
   }

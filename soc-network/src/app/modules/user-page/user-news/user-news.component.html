@@ -1,0 +1,8 @@
+<div *ngIf="isCurrentUser" class="add-new">
+  <input class="message" [(ngModel)]="text"/>
+  <button color="primary" class="send-button" mat-raised-button (click)="addNew()">Добавить запись</button>
+</div>
+<div *ngFor="let record of records" class="record">
+  <div class="record-text">{{ record.text }}</div>
+  <div class="record-date">{{ record.date | date:'H:mm | d.M.yy' }}</div>
+</div>

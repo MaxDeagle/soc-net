@@ -1,0 +1,33 @@
+:host {
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: column;
+  margin-top: 20px;
+}
+
+.add-new {
+  display: flex;
+  justify-content: space-between;
+}
+
+.message {
+  flex-basis: 80%;
+}
+
+.record {
+  display: flex;
+  padding: 5px;
+  margin: 5px;
+  background-color: #eeeeee;
+  justify-content: space-between;
+}
+
+.record-text {
+  flex-basis: 80%;
+}
+
+.record-date {
+  font-size: 12px;
+}

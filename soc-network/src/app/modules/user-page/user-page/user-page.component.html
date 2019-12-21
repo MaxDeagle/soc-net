@@ -1,3 +1,5 @@
 <app-user-page-header *ngIf="user" [user]="user">
 
 </app-user-page-header>
+
+<app-user-news *ngIf="user" [records]="user.records"></app-user-news>

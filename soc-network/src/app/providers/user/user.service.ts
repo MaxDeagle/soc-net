@@ -44,4 +44,10 @@ export class UserService {
     const currentUserId = localStorage.getItem('currentUserId');
     return this.http.get(`http://localhost:8000/users/${currentUserId}/friends`);
   }
+
+  addPageRecord(text: string): Observable<any> {
+    const currentUserId = localStorage.getItem('currentUserId');
+    const data = { text };
+    return this.http.post(`http://localhost:8000/users/${currentUserId}/add-page-record`, data);
+  }
 }
