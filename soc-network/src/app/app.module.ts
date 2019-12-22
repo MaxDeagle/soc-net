@@ -13,9 +13,7 @@ import { UsersItemComponent } from './modules/users-list/users-item/users-item.c
 
 @NgModule({
   declarations: [
-    AppComponent,
-    UsersListComponent,
-    UsersItemComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
