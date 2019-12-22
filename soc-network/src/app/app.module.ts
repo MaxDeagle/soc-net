@@ -8,11 +8,14 @@ import { AuthService } from './providers/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './providers/user/user.service';
 import { SharedModule } from './modules/shared/shared.module';
-
+import { UsersListComponent } from './modules/users-list/users-list/users-list.component';
+import { UsersItemComponent } from './modules/users-list/users-item/users-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    UsersListComponent,
+    UsersItemComponent
   ],
   imports: [
     BrowserModule,

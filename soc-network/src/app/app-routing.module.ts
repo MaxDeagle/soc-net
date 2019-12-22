@@ -26,6 +26,11 @@ const routes: Routes = [
     path: 'friends',
     loadChildren: './modules/friends/friends.module#FriendsModule',
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'users',
+    loadChildren: './modules/users-list/users-list.module#UsersListModule',
+    canActivate: [AuthGuard]
   }
   ];
 

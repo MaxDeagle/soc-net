@@ -1,7 +1,7 @@
-import { Routes, RouterModule } from '@angular/router';
-import { UsersListComponent } from './users-list/users-list.component';
-import { AuthGuard } from '../auth/auth.guard';
 import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '../auth/auth.guard';
+import { UsersListComponent } from './users-list/users-list.component';
 
 export const routes: Routes = [
   {
