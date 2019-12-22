@@ -14,6 +14,10 @@ export class UserService {
     return this.http.get(`http://localhost:8000/getUserById/${userId}`);
   }
 
+  getUsers(): Observable<any> {
+    return this.http.get(`http://localhost:8000/users`);
+  }
+
   uploadAvatar(data): Observable<any> {
     const userId = localStorage.getItem('currentUserId');
     return this.http.post(`http://localhost:8000/users/${userId}/upload-avatar`, data, {
